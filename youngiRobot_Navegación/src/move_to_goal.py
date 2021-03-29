@@ -25,4 +25,3 @@ client.wait_for_server()  # esperamos a que el servidor este activo
 client.send_goal(move)  # enviamos el goal
 rospy.loginfo("Enviado el goal...")
 client.wait_for_result()  # esperamos el resultado
-#print('Resultado: %f'%(client.get_result())) # imprime el resultado
