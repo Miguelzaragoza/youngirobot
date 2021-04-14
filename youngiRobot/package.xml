@@ -15,6 +15,7 @@
   <exec_depend>youngirobot_escaneo</exec_depend>
   <exec_depend>youngirobot_identificacion</exec_depend>
   <exec_depend>youngirobot_monitorizacion</exec_depend>
+  <exec_depend>youngirobot_mundo</exec_depend>
   <exec_depend>youngirobot_navegacion_indicada</exec_depend>
   <exec_depend>youngirobot_navegacion_autonoma</exec_depend>
   <exec_depend>youngirobot_web</exec_depend>
