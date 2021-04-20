@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>move_to_goal</name>
+  <name>youngirobot_navegacion_indicada</name>
   <version>0.0.0</version>
-  <description>The move_to_goal package</description>
+  <description>The youngirobot_navegacion_indicada package</description>
 
   <maintainer email="saulmaicas@todo.todo">saulmaicas</maintainer>
 

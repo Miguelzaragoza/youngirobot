@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>my_navigation_stack</name>
+  <name>youngirobot_escaneo</name>
   <version>0.0.0</version>
-  <description>The my_navigation_stack package</description>
+  <description>The youngirobot_escaneo package</description>
 
   <maintainer email="daferfus@upv.edu.es">David Fernández Fuster</maintainer>
 
