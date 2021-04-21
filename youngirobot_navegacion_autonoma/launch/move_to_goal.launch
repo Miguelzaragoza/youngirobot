@@ -1,8 +1,0 @@
-<launch>
-    <node
-        pkg = "move_to_goal"
-        type = "move_to_goal.py"
-        name = "move_to_goal"
-        output = "screen">
-    </node>
-</launch>
