@@ -1,5 +1,5 @@
 <launch>
-    <arg name="map_file" default="/home/soft/catkin_ws/maps/tb3_hospital_map.yaml"/>
+    <arg name="map_file" default="$(find youngirobot_escaneo)/maps/tb3_hospital_map.yaml"/>
     <node
         name="map_server"
         type="map_server"
