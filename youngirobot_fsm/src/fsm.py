@@ -124,11 +124,11 @@ try:
             StateMachine.add('Navegacion_autonoma', Navegacion_autonoma(), transitions={'1':'Navegacion_indicada','0':'Esperar'}, remapping={'input':'sm_input','output':'input'})
         else:
             print("No se ha ejecutado el programa, vuelve a ejecutarlo")
-            sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
-            sis.start()
-            sm.execute()
-            rospy.spin()
-            sis.stop()
+    sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
+    sis.start()
+    sm.execute()
+    rospy.spin()
+    sis.stop()
     else:
         raise ValueError("Error al introduccir el valor")
 except ValueError as error:
