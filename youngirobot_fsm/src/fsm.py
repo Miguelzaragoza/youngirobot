@@ -27,10 +27,13 @@ class Esperar(State):
     def execute(self, userdata):
         sleep(1)
         sm.userdata.sm_input = int(input('Que quieres hacer? 1(navegacionindicada)/0(navegacionautonoma): '))
-        if userdata.input == 1:
-             return '1'
+        if(userdata.input == 0 or userdata.input == 1):
+            if userdata.input == 1:
+                return '1'
+            else:
+                return '0'
         else:
-             return '0'
+            raise ValueError("Error al introduccir el valor")
 class Navegacion_indicada(State):
     def __init__(self):
         State.__init__(self, outcomes=['1','0'], input_keys=['input'], output_keys=[''])
@@ -62,10 +65,13 @@ class Navegacion_indicada(State):
             print("---------- Moviendo robot ----------")
             condicion_opciones = True
         sm.userdata.sm_input = int(input('Que quieres hacer? 0(Esperar)/1(navegacionautonoma): '))
-        if userdata.input == 1:
-             return '1'
+        if(userdata.input == 0 or userdata.input == 1):
+            if userdata.input == 1:
+                return '1'
+            else:
+                return '0'
         else:
-             return '0'
+            raise ValueError("Error al introduccir el valor")
     def mover_robot_a_punto(self, punto):
 
         #rospy.init_node('fsm')
@@ -97,25 +103,34 @@ class Navegacion_autonoma(State):
     def execute(self, userdata):
         sleep(1)
         sm.userdata.sm_input = int(input('Que quieres hacer? 1(navegacionindicada)/0(Esperar): '))
-        if userdata.input == 1:
-             return '1'
+        if(userdata.input == 0 or userdata.input == 1):
+            if userdata.input == 1:
+                return '1'
+            else:
+                return '0'
         else:
-             return '0'
-
-rospy.init_node('test_fsm', anonymous=True)
-sm = StateMachine(outcomes=['success'])
-sm.userdata.sm_input = 1
-with sm:
+            raise ValueError("Error al introduccir el valor")        
+try:
+  rospy.init_node('test_fsm', anonymous=True)
+  sm = StateMachine(outcomes=['success'])
+  sm.userdata.sm_input = 1
+  with sm:
     iniciar = int(input("Quieres iniciar el robot? 1/0:"))
-    if(iniciar == 1):
-        StateMachine.add('Iniciar', Iniciar(), transitions={'1':'Esperar','0':'Iniciar'}, remapping={'input':'sm_input','output':'input'})
-        StateMachine.add('Esperar', Esperar(), transitions={'1':'Navegacion_indicada','0':'Navegacion_autonoma'}, remapping={'input':'sm_input','output':'input'})
-        StateMachine.add('Navegacion_indicada', Navegacion_indicada(), transitions={'0':'Esperar','1':'Navegacion_autonoma'}, remapping={'input':'sm_input','output':'input'})
-        StateMachine.add('Navegacion_autonoma', Navegacion_autonoma(), transitions={'1':'Navegacion_indicada','0':'Esperar'}, remapping={'input':'sm_input','output':'input'})
+    if(iniciar == 0 or iniciar == 1):
+        if(iniciar == 1):
+            StateMachine.add('Iniciar', Iniciar(), transitions={'1':'Esperar','0':'Iniciar'}, remapping={'input':'sm_input','output':'input'})
+            StateMachine.add('Esperar', Esperar(), transitions={'1':'Navegacion_indicada','0':'Navegacion_autonoma'}, remapping={'input':'sm_input','output':'input'})
+            StateMachine.add('Navegacion_indicada', Navegacion_indicada(), transitions={'0':'Esperar','1':'Navegacion_autonoma'}, remapping={'input':'sm_input','output':'input'})
+            StateMachine.add('Navegacion_autonoma', Navegacion_autonoma(), transitions={'1':'Navegacion_indicada','0':'Esperar'}, remapping={'input':'sm_input','output':'input'})
+        else:
+            print("No se ha ejecutado el programa, vuelve a ejecutarlo")
+            sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
+            sis.start()
+            sm.execute()
+            rospy.spin()
+            sis.stop()
     else:
-        print("No se ha ejecutado el programa, vuelve a ejecutarlo")
-sis = smach_ros.IntrospectionServer('server_name', sm, '/SM_ROOT')
-sis.start()
-sm.execute()
-rospy.spin()
-sis.stop()
+        raise ValueError("Error al introduccir el valor")
+except ValueError as error:
+  print("Se ha producido un error " + str(error))
+
