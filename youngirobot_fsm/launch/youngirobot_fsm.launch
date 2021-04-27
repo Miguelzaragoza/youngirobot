@@ -1,4 +1,0 @@
-<launch>
-<node pkg="youngirobot_fsm" type="fsm.py" name="fsm" output="screen">
-</node>
-</launch>
