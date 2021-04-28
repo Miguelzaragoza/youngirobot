@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(my_navigation_stack)
+project(youngirobot_escaneo)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
@@ -10,7 +10,7 @@ find_package(catkin REQUIRED COMPONENTS
 ###################################
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES my_navigation_stack
+#  LIBRARIES youngirobot_escaneo
 #  CATKIN_DEPENDS rospy
 #  DEPENDS system_lib
 )
