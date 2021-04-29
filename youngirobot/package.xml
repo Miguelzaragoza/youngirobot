@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>youngirobot</name>
+  <version>1.2.1</version>
+  <description> ROS packages for the youngirobot (meta package)
+  </description>
+  <license>Apache 2.0</license>
+  <license>BSD</license>
+  <author email="daferfus@epsg.upv.es">David F.F.</author>
+  <maintainer email="daferfus@epsg.upv.es">David F.F.</maintainer>
+<url type="website">http://xxx </url>   
+<url type="repository">https://github.com/Miguelzaragoza/youngirobot</url>
+<buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>youngirobot_desinfeccion</exec_depend>
+  <exec_depend>youngirobot_escaneo</exec_depend>
+  <exec_depend>youngirobot_identificacion</exec_depend>
+  <exec_depend>youngirobot_monitorizacion</exec_depend>
+  <exec_depend>youngirobot_mundo</exec_depend>
+  <exec_depend>youngirobot_navegacion_indicada</exec_depend>
+  <exec_depend>youngirobot_navegacion_autonoma</exec_depend>
+  <exec_depend>youngirobot_web</exec_depend>
+<export><metapackage/></export>
+</package>
