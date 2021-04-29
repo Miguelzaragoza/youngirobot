@@ -6,13 +6,21 @@ from time import sleep
 import smach_ros
 import actionlib
 from punto import Punto
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal, MoveBaseResult
 
 
 class Iniciar(State):
     def __init__(self):
         State.__init__(self, outcomes=['1','0'], input_keys=['input'], output_keys=[''])
+        pose_publisher = rospy.Publisher('/initialpose', PoseWithCovarianceStamped, queue_size=10)
+        posicion_inicial = PoseWithCovarianceStamped()
+        posicion_inicial.pose.pose.orientation.w = 1
+        posicion_inicial.pose.pose.position.x = -1.75
+        posicion_inicial.pose.pose.position.y = 1.75
+        posicion_inicial.pose.pose.position.z = 0
+        posicion_inicial.header.frame_id = 'map'
+        pose_publisher.publish(posicion_inicial)
 
     def execute(self, userdata):
         sleep(1)
@@ -51,18 +59,24 @@ class Navegacion_indicada(State):
         if numero == 1:
             Punto_Lab = Punto(no= "Laboratorio", pos_x=-2.0, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
             self.mover_robot_a_punto(Punto_Lab)
+            Punto_Lab_Real = Punto(no= "Laboratorio", pos_x=0.0, pos_y=0.0, ori_z=0.0, ori_w=1.0)
+            self.mover_robot_a_punto(Punto_Lab_Real)
             print("---------- Moviendo robot ----------")
             condicion_opciones = True
 
         if numero == 2:
             Punto_Hab_321 = Punto(no= "Habitacion 321", pos_x=2.5, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
             self.mover_robot_a_punto(Punto_Hab_321)
+            Punto_Hab_321_Real = Punto(no= "Habitacion 321", pos_x=-0.25, pos_y=1.0, ori_z=0.0, ori_w=1.0)
+            self.mover_robot_a_punto(Punto_Hab_321_Real)
             print("---------- Moviendo robot ----------")
             condicion_opciones = True
 
         if numero == 3:
             Punto_Banyos = Punto(no= "Banyos", pos_x=4.0, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
             self.mover_robot_a_punto(Punto_Banyos)
+            Punto_Banyos_Real = Punto(no= "Banyos", pos_x=-0.5, pos_y=1.75, ori_z=0.0, ori_w=1.0)
+            self.mover_robot_a_punto(Punto_Banyos_Real)
             print("---------- Moviendo robot ----------")
             condicion_opciones = True
         sm.userdata.sm_input = int(input('Que quieres hacer? 0(Esperar)/1(navegacionautonoma): '))
@@ -138,10 +152,18 @@ class Navegacion_autonoma(State):
         Punto_Lab = Punto(no= "Laboratorio",pos_x=-2.0, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
         Punto_Hab_321 = Punto(no= "Habitacion 321", pos_x=2.5, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
         Punto_Banyos = Punto(no= "Banyos", pos_x=4.0, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
-
+        
         ruta_manyanera = [Punto_Hab_321, Punto_Banyos]
         ruta_medio_dia = [Punto_Lab, Punto_Banyos]
         ruta_nocturna = [Punto_Banyos, Punto_Lab]
+
+        Punto_Lab_Real = Punto(no= "Laboratorio", pos_x=0.0, pos_y=0.0, ori_z=0.0, ori_w=1.0)
+        Punto_Hab_321_Real = Punto(no= "Habitacion 321", pos_x=-0.25, pos_y=1.0, ori_z=0.0, ori_w=1.0)
+        Punto_Banyos_Real = Punto(no= "Banyos", pos_x=-0.5, pos_y=1.75, ori_z=0.0, ori_w=1.0)
+
+        ruta_manyanera = [Punto_Hab_321_Real, Punto_Banyos_Real]
+        ruta_medio_dia = [Punto_Lab_Real, Punto_Banyos_Real]
+        ruta_nocturna = [Punto_Banyos_Real, Punto_Lab_Real]
 
         if numero == 1:
             for i in ruta_manyanera:
