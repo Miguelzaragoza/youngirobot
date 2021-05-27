@@ -1,0 +1,8 @@
+<launch>
+    <node
+        pkg = "youngirobot_navegacion_indicada"
+        type = "youngirobot_navegacion_indicada.py"
+        name = "youngirobot_navegaacion_indicada"
+        output = "screen">
+    </node>
+</launch>

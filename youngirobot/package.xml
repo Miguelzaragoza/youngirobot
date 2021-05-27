@@ -13,7 +13,6 @@
 <buildtool_depend>catkin</buildtool_depend>
   <exec_depend>youngirobot_desinfeccion</exec_depend>
   <exec_depend>youngirobot_escaneo</exec_depend>
-  <exec_depend>youngirobot_fsm</exec_depend>
   <exec_depend>youngirobot_identificacion</exec_depend>
   <exec_depend>youngirobot_monitorizacion</exec_depend>
   <exec_depend>youngirobot_mundo</exec_depend>

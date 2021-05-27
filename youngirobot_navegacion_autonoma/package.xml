@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>youngirobot_navegacion_autonoma</name>
+  <name>move_to_goal</name>
   <version>0.0.0</version>
-  <description>The youngirobot_navegacion_autonoma package</description>
+  <description>The move_to_goal package</description>
 
   <maintainer email="saulmaicas@todo.todo">saulmaicas</maintainer>
 
@@ -10,8 +10,14 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>rospy</build_depend>
+  <build_depend>move_base_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
   <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>move_base_msgs</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
   <exec_depend>rospy</exec_depend>
+  <exec_depend>move_base_msgs</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
 
   <export>
 

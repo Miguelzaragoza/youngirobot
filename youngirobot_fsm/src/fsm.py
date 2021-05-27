@@ -1,9 +1,6 @@
 #! /usr/bin/env python
 
-<<<<<<< HEAD
 import math
-=======
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
 import rospy
 from smach import State,StateMachine
 from time import sleep
@@ -15,7 +12,6 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal, MoveBaseResult
 
 
 class Iniciar(State):
-<<<<<<< HEAD
     """
   Estado Inicial
 
@@ -30,9 +26,6 @@ class Iniciar(State):
         Inicializa el estado y publica la posición inicial del robot
 
         """
-=======
-    def __init__(self):
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
         State.__init__(self, outcomes=['1','0'], input_keys=['input'], output_keys=[''])
         pose_publisher = rospy.Publisher('/initialpose', PoseWithCovarianceStamped, queue_size=10)
         posicion_inicial = PoseWithCovarianceStamped()
@@ -44,20 +37,16 @@ class Iniciar(State):
         pose_publisher.publish(posicion_inicial)
 
     def execute(self, userdata):
-<<<<<<< HEAD
         """ 
         Canvia de estado si el parametro de entra es uno sino fin del programa
         
         """
-=======
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
         sleep(1)
         if userdata.input == 1:
              return '1'
         else:
              return '0'
 class Esperar(State):
-<<<<<<< HEAD
     """
   Estado Esperar
 
@@ -78,12 +67,6 @@ class Esperar(State):
         Da a elgir al usuario que estado quiere canviar y devuelve el valor como consecuencia
         
         """
-=======
-    def __init__(self):
-        State.__init__(self, outcomes=['1','0'], input_keys=['input'], output_keys=[''])
-
-    def execute(self, userdata):
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
         sleep(1)
         sm.userdata.sm_input = int(input('Que quieres hacer? 1(navegacionindicada)/0(navegacionautonoma): '))
         if(userdata.input == 0 or userdata.input == 1):
@@ -95,7 +78,6 @@ class Esperar(State):
             return '0'
             raise ValueError("Error al introduccir el valor")
 class Navegacion_indicada(State):
-<<<<<<< HEAD
     """
   Estado navegacion indicada
 
@@ -118,12 +100,6 @@ class Navegacion_indicada(State):
         Da a elegir al usuario que punto quiere ir i manda el punto a la funcion mover_punto_robot()
         
         """
-=======
-    def __init__(self):
-        State.__init__(self, outcomes=['1','0'], input_keys=['input'], output_keys=[''])
-
-    def execute(self, userdata):
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
         sleep(1)
         # --- main() ---
         print("Pulsa 1 para ir al Laboratorio")
@@ -134,7 +110,6 @@ class Navegacion_indicada(State):
 
         if numero == 1:
             Punto_Lab = Punto(no= "Laboratorio", pos_x=-2.0, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
-<<<<<<< HEAD
 
             Punto_Lab_Real = Punto(no= "Laboratorio", pos_x=-0.5, pos_y=1, ori_z=0.0, ori_w=1.0) # Habitacion 1
             Punto_Delante_Lab_Real = Punto(no= "Laboratorio", pos_x=-0.2, pos_y=0.25, ori_z=0.0, ori_w=1.0) # Delante Habitacion 1
@@ -162,17 +137,11 @@ class Navegacion_indicada(State):
 
 
             
-=======
-            self.mover_robot_a_punto(Punto_Lab)
-            Punto_Lab_Real = Punto(no= "Laboratorio", pos_x=0.0, pos_y=0.0, ori_z=0.0, ori_w=1.0)
-            self.mover_robot_a_punto(Punto_Lab_Real)
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
             print("---------- Moviendo robot ----------")
             condicion_opciones = True
 
         if numero == 2:
             Punto_Hab_321 = Punto(no= "Habitacion 321", pos_x=2.5, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
-<<<<<<< HEAD
 
             Punto_Hab_321_Real = Punto(no= "Habitacion 321", pos_x=0.0, pos_y=1.75, ori_z=0.0, ori_w=1.0) # Habitacion 2
             Punto_Delante_Hab_321_Real = Punto(no= "Habitacion 321", pos_x=0.5, pos_y=0.75, ori_z=0.0, ori_w=1.0) # Delante Habitacion 2
@@ -197,17 +166,11 @@ class Navegacion_indicada(State):
                     self.mover_robot_a_punto(i)
 
             
-=======
-            self.mover_robot_a_punto(Punto_Hab_321)
-            Punto_Hab_321_Real = Punto(no= "Habitacion 321", pos_x=-0.25, pos_y=1.0, ori_z=0.0, ori_w=1.0)
-            self.mover_robot_a_punto(Punto_Hab_321_Real)
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
             print("---------- Moviendo robot ----------")
             condicion_opciones = True
 
         if numero == 3:
             Punto_Banyos = Punto(no= "Banyos", pos_x=4.0, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
-<<<<<<< HEAD
 
             Punto_Banyos_Real = Punto(no= "Banyos", pos_x=1, pos_y=2.5, ori_z=0.0, ori_w=1.0) # Habitacion 3
             Punto_Delante_Banyos_Real = Punto(no= "Banyos", pos_x=1.0, pos_y=1.25, ori_z=0.0, ori_w=1.0) # Delante Habitacion 3
@@ -231,11 +194,6 @@ class Navegacion_indicada(State):
                 for i in ruta_limpieza_habitacion3:
                     self.mover_robot_a_punto(i)
 
-=======
-            self.mover_robot_a_punto(Punto_Banyos)
-            Punto_Banyos_Real = Punto(no= "Banyos", pos_x=-0.5, pos_y=1.75, ori_z=0.0, ori_w=1.0)
-            self.mover_robot_a_punto(Punto_Banyos_Real)
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
             print("---------- Moviendo robot ----------")
             condicion_opciones = True
         sm.userdata.sm_input = int(input('Que quieres hacer? 0(Esperar)/1(navegacionautonoma): '))
@@ -247,16 +205,12 @@ class Navegacion_indicada(State):
         else:
             return '0'
             raise ValueError("Error al introduccir el valor")
-<<<<<<< HEAD
 
     def mover_robot_a_punto(self, punto):
         """ 
         Publica en la accion movebase el punto para que vaya hasta el 
         
         """
-=======
-    def mover_robot_a_punto(self, punto):
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
 
         #rospy.init_node('fsm')
 
@@ -281,7 +235,6 @@ class Navegacion_indicada(State):
         #print('Resultado: %f'%(client.get_result())) # imprime el resultado
 
 class Navegacion_autonoma(State):
-<<<<<<< HEAD
     """
   Estado navegacion autonoma
 
@@ -305,12 +258,6 @@ class Navegacion_autonoma(State):
         Publica en la accion movebase el punto para que vaya hasta el 
         
         """
-=======
-    def __init__(self):
-        State.__init__(self, outcomes=['1','0'], input_keys=['input'], output_keys=[''])
-
-    def mover_robot_a_punto(self, punto):
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
 
         #rospy.init_node('fsm')
 
@@ -335,13 +282,10 @@ class Navegacion_autonoma(State):
         #print('Resultado: %f'%(client.get_result())) # imprime el resultado
 
     def execute(self, userdata):
-<<<<<<< HEAD
         """ 
         Da a elegir al usuario que ruta quiere ir i manda los puntos a la funcion mover_punto_robot()
         
         """
-=======
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
         sleep(1)
         # --- main() ---
         print("Pulsa 1 para realizar la ruta manyanera")
@@ -353,7 +297,6 @@ class Navegacion_autonoma(State):
         Punto_Lab = Punto(no= "Laboratorio",pos_x=-2.0, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
         Punto_Hab_321 = Punto(no= "Habitacion 321", pos_x=2.5, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
         Punto_Banyos = Punto(no= "Banyos", pos_x=4.0, pos_y=-4.0, ori_z=0.0, ori_w=1.0)
-<<<<<<< HEAD
 
         Punto_Lab_Real = Punto(no= "Laboratorio", pos_x=-0.5, pos_y=1, ori_z=0.0, ori_w=1.0) # Habitacion 1
         Punto_Delante_Lab_Real = Punto(no= "Laboratorio", pos_x=-0.2, pos_y=0.25, ori_z=0.0, ori_w=1.0) # Delante Habitacion 1
@@ -382,20 +325,6 @@ class Navegacion_autonoma(State):
         ruta_manyanera = [Punto_Delante_Lab_Real, Punto_Lab_Real,Punto_1_Hab1,Punto_2_Hab1,Punto_3_Hab1,Punto_4_Hab1,Punto_Delante_Hab_321_Real, Punto_Hab_321_Real,Punto_1_Hab2,Punto_2_Hab2,Punto_3_Hab2,Punto_4_Hab2]
         ruta_medio_dia = [Punto_Delante_Hab_321_Real, Punto_Hab_321_Real,Punto_1_Hab2,Punto_2_Hab2,Punto_3_Hab2,Punto_4_Hab2, Punto_Delante_Banyos_Real, Punto_Banyos_Real,Punto_1_Hab3,Punto_2_Hab3,Punto_3_Hab3,Punto_4_Hab3]
         ruta_nocturna = [Punto_Delante_Banyos_Real, Punto_Banyos_Real,Punto_1_Hab3,Punto_2_Hab3,Punto_3_Hab3,Punto_4_Hab3,Punto_Delante_Lab_Real, Punto_Lab_Real,Punto_1_Hab1,Punto_2_Hab1,Punto_3_Hab1,Punto_4_Hab1]
-=======
-        
-        ruta_manyanera = [Punto_Hab_321, Punto_Banyos]
-        ruta_medio_dia = [Punto_Lab, Punto_Banyos]
-        ruta_nocturna = [Punto_Banyos, Punto_Lab]
-
-        Punto_Lab_Real = Punto(no= "Laboratorio", pos_x=0.0, pos_y=0.0, ori_z=0.0, ori_w=1.0)
-        Punto_Hab_321_Real = Punto(no= "Habitacion 321", pos_x=-0.25, pos_y=1.0, ori_z=0.0, ori_w=1.0)
-        Punto_Banyos_Real = Punto(no= "Banyos", pos_x=-0.5, pos_y=1.75, ori_z=0.0, ori_w=1.0)
-
-        ruta_manyanera = [Punto_Hab_321_Real, Punto_Banyos_Real]
-        ruta_medio_dia = [Punto_Lab_Real, Punto_Banyos_Real]
-        ruta_nocturna = [Punto_Banyos_Real, Punto_Lab_Real]
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
 
         if numero == 1:
             for i in ruta_manyanera:
@@ -426,10 +355,7 @@ class Navegacion_autonoma(State):
                     
 try:
   rospy.init_node('test_fsm', anonymous=True)
-<<<<<<< HEAD
   
-=======
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
   sm = StateMachine(outcomes=['success'])
   sm.userdata.sm_input = 1
   with sm:
@@ -452,8 +378,4 @@ try:
         
 except ValueError as error:
   print("Se ha producido un error " + str(error))
-<<<<<<< HEAD
   rospy.spin()
-=======
-  rospy.spin()
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2

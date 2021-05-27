@@ -280,15 +280,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-<<<<<<< HEAD
       Max Intensity: 11201
       Min Color: 0; 0; 0
       Min Intensity: 101
-=======
-      Max Intensity: 6048
-      Min Color: 0; 0; 0
-      Min Intensity: 240
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
       Name: LaserScan
       Position Transformer: XYZ
       Queue Size: 10
@@ -301,7 +295,6 @@ Visualization Manager:
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-<<<<<<< HEAD
     - Alpha: 1
       Arrow Length: 0.300000012
       Axes Length: 0.300000012
@@ -318,8 +311,6 @@ Visualization Manager:
       Topic: /particlecloud
       Unreliable: false
       Value: true
-=======
->>>>>>> a3604b9544d71c63f6bd56d3b89b29868443e8b2
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48

@@ -1,19 +1,19 @@
-<?xml version="1.0"?>
+< ?xmlversion="1.0"?>
 <package format="2">
-  <name>youngirobot_monitorizacion</name>
-  <version>0.0.0</version>
-  <description>The youngirobot_monitorizacion package</description>
-
-  <maintainer email="saulmaicas@todo.todo">saulmaicas</maintainer>
-
-  <license>TODO</license>
-
-  <buildtool_depend>catkin</buildtool_depend>
-  <build_depend>rospy</build_depend>
-  <build_export_depend>rospy</build_export_depend>
-  <exec_depend>rospy</exec_depend>
-
-  <export>
-
-  </export>
+  <name>youngiRobot</name>
+  <version>1.2.1</version>
+  <description> ROS packages for the youngiRobot (meta package)
+  </description>
+  <license>Apache 2.0</license>
+  <license>BSD</license>
+  <author email="daferfus@epsg.upv.es">David F.F.</author>
+  <maintainer email="daferfus@epsg.upv.es">David F.F.</maintainer>
+<url type="website">http://xxx </url>   
+<url type="repository">https://github.com/Miguelzaragoza/Proyecto2_Robotica</url>
+<buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>youngiRobot_Desinfección</exec_depend>
+  <exec_depend>youngiRobot_Identificación</exec_depend>
+  <exec_depend>youngiRobot_Monitorización</exec_depend>
+  <exec_depend>youngiRobot_Navegación</exec_depend>
+<export><metapackage/></export>
 </package>
