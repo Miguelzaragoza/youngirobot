@@ -1,2 +1,0 @@
-# youngiRobot
-Proyecto robótica coche
