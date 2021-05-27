@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(youngirobot_navegacion_autonoma)
+project(move_to_goal_topic)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  move_base_msgs
+  geometry_msgs
 )
 
 ###################################
