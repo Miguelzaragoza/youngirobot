@@ -91,6 +91,7 @@ void setup()
 //ros::NodeHandle  nh;
 
 void messageCb( const std_msgs::Byte& led_msg) {
+    Serial.print("Entro"); 
     Serial.print("Funciona ");
     digitalWrite(inputPIN, HIGH);
     digitalWrite(pinIN1, HIGH);
@@ -141,7 +142,6 @@ void programa (){
     analogWrite(pinENA, 0);
     delay(200);
 }
-
 
 
 /*******************************************************************************
@@ -195,17 +195,17 @@ void loop()
     publishVersionInfoMsg();
     tTime[4] = t;
   }
-   if ((t-tTime[5]) >= (1000 / PUF_FREQUENCY))
-  {
-    programa();
-    tTime[5] = t;
-  }
+   //if ((t-tTime[5]) >= (1000 / PUF_FREQUENCY))
+  //{
+    //programa();
+    //tTime[5] = t;
+  //}
 
 #ifdef DEBUG
-  if ((t-tTime[6]) >= (1000 / DEBUG_LOG_FREQUENCY))
+  if ((t-tTime[5]) >= (1000 / DEBUG_LOG_FREQUENCY))
   {
     sendDebuglog();
-    tTime[6] = t;
+    tTime[5] = t;
   }
 #endif
 
