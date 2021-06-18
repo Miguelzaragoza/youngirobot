@@ -601,11 +601,9 @@ input:checked + .slider:before {
     margin-bottom: 0;
 }
 
- .robot-info-camara {
-    margin-left: 5px;
-    margin-right: 10px;
+ .row .list-group .robot-info-camara {
     width: 50px;
-    border-radius: 6px;
+    border-radius: 12px;
     cursor: pointer;
 }
 
@@ -668,3 +666,43 @@ input:checked + .slider:before {
         margin-top: -30vh;
         cursor: pointer;
     }
+
+
+    .container .row .list-group:hover{
+        text-decoration: none;
+    }
+    .container .row .list-group a{
+        
+        text-decoration: none;
+    }
+
+
+.container-fluid .row #imgMapa{
+    width: 700px;
+    height: 400px;
+}
+
+.container-fluid .row .mascara{
+    
+    height: 210px;
+    width: 700px;
+    position: absolute;
+    
+}
+
+.container-fluid .row .mascara .linea-abc{
+    width: 700px;
+    height: 210px;
+    z-index: 4000;
+}
+
+
+.container-fluid .row .mascara .linea-abc .zona{
+    opacity: 0;
+}
+
+.container-fluid .row .mascara .linea-abc .zona:hover{
+    opacity: .1;
+    cursor: pointer;
+}
+

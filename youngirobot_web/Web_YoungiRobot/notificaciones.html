@@ -103,83 +103,37 @@
                     <div class="card-header">
                         <i class="fas fa-table"></i>
                         Alertas</div>
-                    <div class="card-body">
+                        <div class="card-body">
 
-                        <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Id_alertas</th>
-                                        <th>Tipo</th>
-                                        <th>Hora</th>
-                                        <th>Día</th>
-                                        <th>Resuelto</th>
-                                        <th>Eliminar</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <!--  <?php
-                                        if($datos=="option1"){
-                                            include("../Backend/consultar_usuarios.php");
-                                        }
-                                        if($datos=="option2"){
-                                            include("../Backend/consultar_usuarios_sensorActivado.php");
-                                        }
-                                        if($datos=="option3"){
-                                            include("../Backend/consultar_usuarios_sensorInactivo.php");
-                                        }
-                                   
-                                    ?> -->
-
-                                    <tr>
-                                        <td>2304</td>
-                                        <td>Bateria</td>
-                                        <td>13:08</td>
-                                        <td>2011/07/25</td>
-                                        <td>Imagen1</td>
-                                        <td>
-                                            <div class="iconos-tabla-usuarios">
-
-                                                <a href="#" data-toggle="modal" data-target="#eliminarUsuariotModal">
-
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2305</td>
-                                        <td>Incidencias</td>
-                                        <td>13:09</td>
-                                        <td>2009/01/12</td>
-                                        <td>Imagen2</td>
-                                        <td>
-                                            <div class="iconos-tabla-usuarios">
-
-                                                <a href="#" data-toggle="modal" data-target="#eliminarUsuariotModal">
-
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                </tbody>
-
-                                <tfoot>
-                                    <tr>
-                                        <th>Id_Alertas</th>
-                                        <th>Tipo</th>
-                                        <th>Hora</th>
-                                        <th>Día</th>
-                                        <th>Resuelto</th>
-                                        <th>Eliminar</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id_Incidencia</th>
+                                            <th>Sector</th>
+                                            <th>Hora</th>
+                                            <th>Día</th>
+                                            <th>¿Resuelto?</th>
+                                        </tr>
+                                    </thead>
+    
+                                    <tbody id="tablaAlertas">
+                                        
+    
+                                    </tbody>
+    
+                                    <tfoot>
+                                        <tr>
+                                            <th>Id_Incidencia</th>
+                                            <th>Sector</th>
+                                            <th>Hora</th>
+                                            <th>Día</th>
+                                            <th>¿Resuelto?</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
-                    </div>
                     <div class="card-footer small text-muted">Actualizada ayer a las 11:59 PM</div>
                 </div>
 
@@ -407,6 +361,81 @@
         }
 
     </script>
+
+<script>
+    var peticionAlertas = new XMLHttpRequest();
+    peticionAlertas.open("get", "Backend/select_alertas.php", true);
+
+    peticionAlertas.send();
+
+    peticionAlertas.onload = function () {
+
+        var tabla= document.getElementById("tablaAlertas");
+        // ...esta aparece bajo la forma de "this.responseText", un texto con un formato que recuerda al de JSON.
+        // Como al final de dicho texto se encuentra "[]", no cumple con el convenio del formato JSON.
+        var textoJSON_noApto = this.responseText;
+        //console.log(textoJSON_noApto);
+
+        // Ahora el texto ya es apto para pasarlo a JSON.
+        var json = JSON.parse(textoJSON_noApto);
+        //console.log(json);
+        // Una vez pasado a dicha formato, y por cada objeto en dicho JSON, se accede a sus propiedades.
+
+
+        //var tblBody = document.createElement("div");
+       
+            
+            for (i =0; i<json.length; i++) {
+                var hilera = document.createElement("tr");
+                for(j=0; j<=4;j++){
+                    
+                //console.log(json[i])
+                var celda = document.createElement("td");
+                    if(j==0){
+                        var id_alerta= document.createTextNode(json[i]["id_alertas"]);
+                        celda.appendChild(id_alerta);
+                        hilera.appendChild(celda);
+                    }
+                    if(j==1){
+                        var tipo= document.createTextNode(json[i]["tipo"]);
+                        celda.appendChild(tipo);
+                        hilera.appendChild(celda);
+                    }
+                    if(j==2){
+                        var hora= document.createTextNode(json[i]["hora"]);
+                    celda.appendChild(hora);
+                    hilera.appendChild(celda);
+                    }
+                    if(j==3){
+                        var dia= document.createTextNode(json[i]["dia"]);
+                        //console.log(dia)
+                    celda.appendChild(dia);
+                    hilera.appendChild(celda);
+
+                    }
+                    if(j==4){
+                        if(json[i]["resuelto"]==1){
+                            var resuelto= document.createTextNode("Si");
+                        }else{
+                            var resuelto= document.createTextNode("No");
+                        }
+                        
+                    celda.appendChild(resuelto);
+                    hilera.appendChild(celda);
+
+                    }              
+                
+                //tblBody.appendChild(hilera);
+        }
+        tabla.appendChild(hilera);
+        }
+        
+
+    };
+
+</script>
+
+
 </body>
 
 </html>

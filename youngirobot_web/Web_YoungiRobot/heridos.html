@@ -116,57 +116,11 @@
                                         <th>Sector</th>
                                         <th>Hora</th>
                                         <th>Día</th>
-                                        <th>Imagen</th>
-                                        <th>Eliminar</th>
+                                        
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <!--  <?php
-                                        if($datos=="option1"){
-                                            include("../Backend/consultar_usuarios.php");
-                                        }
-                                        if($datos=="option2"){
-                                            include("../Backend/consultar_usuarios_sensorActivado.php");
-                                        }
-                                        if($datos=="option3"){
-                                            include("../Backend/consultar_usuarios_sensorInactivo.php");
-                                        }
-                                   
-                                    ?> -->
-
-                                    <tr>
-                                        <td>2304</td>
-                                        <td>A</td>
-                                        <td>13:08</td>
-                                        <td>2011/07/25</td>
-                                        <td>Imagen1</td>
-                                        <td>
-                                            <div class="iconos-tabla-usuarios">
-
-                                                <a href="#" data-toggle="modal" data-target="#eliminarUsuariotModal">
-
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2305</td>
-                                        <td>B</td>
-                                        <td>13:09</td>
-                                        <td>2009/01/12</td>
-                                        <td>Imagen2</td>
-                                        <td>
-                                            <div class="iconos-tabla-usuarios">
-
-                                                <a href="#" data-toggle="modal" data-target="#eliminarUsuariotModal">
-
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <tbody id="tabla-incidencias">
 
                                 </tbody>
 
@@ -176,8 +130,6 @@
                                         <th>Sector</th>
                                         <th>Hora</th>
                                         <th>Día</th>
-                                        <th>Imagen</th>
-                                        <th>Eliminar</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -421,6 +373,67 @@
         }
 
     </script>
+
+<script>
+    var peticionAlertas = new XMLHttpRequest();
+    peticionAlertas.open("get", "Backend/select_incidencias.php", true);
+
+    peticionAlertas.send();
+
+    peticionAlertas.onload = function () {
+
+        var tabla= document.getElementById("tabla-incidencias");
+        // ...esta aparece bajo la forma de "this.responseText", un texto con un formato que recuerda al de JSON.
+        // Como al final de dicho texto se encuentra "[]", no cumple con el convenio del formato JSON.
+        var textoJSON_noApto = this.responseText;
+        //console.log(textoJSON_noApto);
+
+        // Ahora el texto ya es apto para pasarlo a JSON.
+        var json = JSON.parse(textoJSON_noApto);
+        //console.log(json);
+        // Una vez pasado a dicha formato, y por cada objeto en dicho JSON, se accede a sus propiedades.
+
+
+        //var tblBody = document.createElement("div");
+       
+            
+            for (i =0; i<json.length; i++) {
+                var hilera = document.createElement("tr");
+                for(j=0; j<=4;j++){
+                    
+                //console.log(json[i])
+                var celda = document.createElement("td");
+                    if(j==0){
+                        var id_incidencia= document.createTextNode(json[i]["id_incidencia"]);
+                        celda.appendChild(id_incidencia);
+                        hilera.appendChild(celda);
+                    }
+                    if(j==1){
+                        var sector= document.createTextNode(json[i]["sector"]);
+                        celda.appendChild(sector);
+                        hilera.appendChild(celda);
+                    }
+                    if(j==2){
+                        var hora= document.createTextNode(json[i]["hora"]);
+                    celda.appendChild(hora);
+                    hilera.appendChild(celda);
+                    }
+                    if(j==3){
+                        var dia= document.createTextNode(json[i]["dia"]);
+                    celda.appendChild(dia);
+                    hilera.appendChild(celda);
+
+                    }             
+                
+                //tblBody.appendChild(hilera);
+        }
+        tabla.appendChild(hilera);
+        }
+        
+
+    };
+
+</script>
 </body>
 
 </html>

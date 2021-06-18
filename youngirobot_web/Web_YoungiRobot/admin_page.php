@@ -18,8 +18,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     <title>youngiRobot | Panel Cliente</title>
 
     <!-- Camara -->
-    <script src="https://cdn.jsdelivr.net/npm/eventemitter2@5.0.1/lib/eventemitter2.min.js"></script>
-
+    <!--<script src="https://cdn.jsdelivr.net/npm/eventemitter2@5.0.1/lib/eventemitter2.min.js"></script>
+-->
+<script type="text/javascript" src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
     <script type="text/javascript" src="assets/js/demo/roslib.min.js"></script>
 
     <!-- Favicons -->
@@ -46,6 +47,9 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     
     <script type="text/javascript" src="https://static.robotwebtools.org/ros2djs/current/ros2d.min.js"></script>
     <script type="text/javascript" src="assets/js/three.js"></script>
+    
+    <!-- Remix Icons-->
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
 
 
 </head>
@@ -132,56 +136,96 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                 <div class="container " id="headerRobot" style="display:none">
 
                     <div class="row">
-                    <div class="col-lg-1 col-md-3">
-                        <div class="row"><b>Robot_1</b></div>    
+                                <ul class="list-group mb-3 w-100">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center bg-primary bg-gradient text-light">
+                                        <div class="col-auto">
+                                            <b>Robot_1</b>
+                                        </div>
+                                        <div class="col-auto">
+                                            Estado
+                                            <span class="badge badge-light badge-pill ml-4 " id="texto_conectado">12</span>
+                                        </div>
+                                        <div class="col-auto">
+                                            Batería
+                                            <span class="badge badge-light badge-pill ml-4 " id="bateria">100%</span>
+                                        </div>
+                                        <div class="col-auto" data-toggle="modal" data-target="#infoRobot">
+                                            Cámara
+                                            <span class="badge badge-pill ml-4 robot-info-camara" id="divCamera2" ></span>
+                                        </div>
+                                        
+                                         
+                                    </li>
+                                </ul>
+
                     </div>
-                    <div class="col-lg-3 col-md-3">
-                        <div class="row">Estado: <p id="texto_conectado" class="robot-info"></p></div>
+
+                <div class="row">
+                    <div class="col-8">
+                    <!-- Mapa Panel Principal -->
+                        <div class="container mt-4">
+                            <!--<img src="assets/img/planta_1.png" class="mt-4" alt="Planta1" id="imgMapa">
+                            -->
+                            <div class="mascara mt-4 ml-4">
+                            <div class="row linea-abc justify-content-end">
+                               <div class="col bg-primary zona" data-bs-toggle="tooltip" data-bs-placement="top" title="Sector A" id="sectorA">
+                                   
+                               </div>
+                               <div class="col zona bg-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Sector B" id="sectorB">
+                                   
+                               </div>
+                               <div class="col-4  zona bg-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="Sector C" id="sectorC">
+                                   
+                               </div>
+                                
+                            </div>
+                            </div>
+                            <!--<img src="assets/img/planta_1.png" class="mt-4" alt="Planta1" id="imgMapa">-->
+                            
+                            <canvas class="mt-4" id="map" width="550" height="600"></canvas>
+
+                        </div>
+                        <p class="ml-3"><i>Pulse el robot para indicarle un destino o ruta que limpiar.</i></p>
                     </div>
 
-                    <div class="col-lg-3 col-md-3 mt-2 mt-md-0">
-                       <div class="row">Batería: <p class="robot-info" id="bateria">20%</p>  </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 mt-2 mt-lg-0">
-                       <div class="row align-items-center">Cámara: 
-                       <!--<img class="robot-info-camara" src="assets/img/imagen_camara.jpeg" data-toggle="modal" data-target="#infoRobot" alt="">
-                       -->
-                       <div id="divCamera2" class="robot-info-camara"  data-toggle="modal" data-target="#infoRobot"></div>
-                       </div>
-                        
-                    </div>
-
-
-                </div>
-
-            </div>
                 
-                <!-- Mapa Panel Principal -->
-                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pills-p1-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-p1" type="button" role="tab" aria-controls="pills-p1"
-                            aria-selected="true">Planta 1</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="pills-p2-tab" data-bs-toggle="pill" data-bs-target="#pills-p2"
-                            type="button" role="tab" aria-controls="pills-p2" aria-selected="false">Planta 2</button>
-                    </li>
-                </ul>
-                <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active text-center" id="pills-p1" role="tabpanel"
-                        aria-labelledby="pills-p1-tab">
-                        <img src="assets/img/planta_1.png" class="mt-4" alt="Planta1" id="imgMapa">
 
-                        
-                        <div id="map"  class="mt-5"></div>
-                        
+                    <div class="col-3">
+                        <div class="container mt-5 ml-5">
+                            <div class="row">
+                                
+                                <ul class="list-group mb-3 w-100">
+                                <a href="heridos.html">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center bg-primary text-light">
+                                        <b>Heridos</b>
+                                         <span class="badge badge-light badge-pill ml-4 text-primary" id="texto-heridos">0</span>
+                                    </li>
+                                </a>
+                                </ul>
 
+                                
+                                <ul class="list-group w-100 mb-3">
+                                <a href="notificaciones.html">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center bg-primary text-light">
+                                        <b>Alertas</b>
+                                         <span class="badge badge-light badge-pill ml-4 text-primary" id="texto-alertas">2</span>
+                                    </li>
+                                </a>
+                                </ul>
+
+                                <ul class="list-group w-100" id="limpiar">
+                                <a href="#">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center bg-primary text-light">
+                                        <b>Limpiar </b>
+                                         <span class="badge ml-5 text-primary"><img src="assets/img/spray.png" style="width:30px; heigth:30px;"></img></span>
+                                    </li>
+                                </a>
+                                </ul>
+                                        
+                            </div>
+                        </div>
                     </div>
-                    <div class="tab-pane fade text-center" id="pills-p2" role="tabpanel" aria-labelledby="pills-p2-tab">
-                        <img src="assets/img/planta_2.png" class="mt-5" alt="Planta2">
-                    </div>
+
                 </div>
 
             </div>
@@ -219,6 +263,25 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
         </div>
     </div>
 
+    <!-- Alerta Modal-->
+    <div class="modal fade" id="alertasModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-primary text-light">
+                <div class="modal-header">
+                    <i class="ri-error-warning-line mr-3 mt-1"></i>
+                    <h5 class="modal-title" id="exampleModalLabel"><b>Alerta</b></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="alertas-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Info Robot Modal-->
     <div class="modal fade" id="infoRobot" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -226,7 +289,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Robot 1</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -246,8 +309,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">He llegado!</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -268,7 +331,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Elige la ruta a seguir:</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
@@ -279,7 +342,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                                 <div class="card-header text-center" id="headingOne">
                                     <button class="btn btn-light " data-toggle="collapse" data-target="#collapseOne"
                                         aria-expanded="false" aria-controls="collapseOne">
-                                        Destino 1:
+                                        Destinos:
                                     </button>
                                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
                                         data-parent="#accordion">
@@ -323,88 +386,38 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                                             <button class="btn btn-light" data-toggle="collapse"
                                                 data-target="#collapseTwo" aria-expanded="false"
                                                 aria-controls="collapseOne">
-                                                Destino 2:
+                                                Selección de rutas:
                                             </button>
                                         </div>
                                         <div id="collapseTwo" class="collapse" aria-labelledby="headingOne"
                                             data-parent="#accordion">
                                             <div class="linea">
-                                                <div class="card text-center" style="width: 9rem;" id="btn_enviar_bano">
-
+                                                <div class="card text-center" style="width: 9rem;" id="btn_ruta_mananera">
                                                     <img class="card-img-top" src="assets/img/bano.png"
                                                         alt="Card image cap">
-
                                                     <div class="card-body">
-                                                        <h5 class="card-title">Baño</h5>
+                                                        <h5 class="card-title">Ruta mañanera</h5>
                                                         <p class="card-text">Seleccionar</p>
                                                     </div>
                                                 </div>
 
 
 
-                                                <div class="card text-center" style="width: 9rem;" id="btn_enviar_lab">
+                                                <div class="card text-center" style="width: 9rem;" id="btn_ruta_mediodia">
                                                     <img class="card-img-top" src="assets/img/tubo.png"
                                                         alt="Card image cap">
                                                     <div class="card-body">
-                                                        <h5 class="card-title">Laboratorio</h5>
+                                                        <h5 class="card-title">Ruta mediodia</h5>
                                                         <p class="card-text">Seleccionar</p>
                                                     </div>
                                                 </div>
 
 
-                                                <div class="card text-center" style="width: 9rem;" id="btn_enviar_hab">
+                                                <div class="card text-center" style="width: 9rem;" id="btn_ruta_nocturna">
                                                     <img class="card-img-top" src="assets/img/bed.png"
                                                         alt="Card image cap">
                                                     <div class="card-body">
-                                                        <h5 class="card-title">H - 123</h5>
-                                                        <p class="card-text">Seleccionar</p>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="card">
-                                        <div class="card-header text-center" id="headingOne">
-                                            <button class="btn btn-light" data-toggle="collapse"
-                                                data-target="#collapse3" aria-expanded="false"
-                                                aria-controls="collapseOne">
-                                                Destino 3:
-                                            </button>
-                                        </div>
-                                        <div id="collapse3" class="collapse" aria-labelledby="headingOne"
-                                            data-parent="#accordion">
-                                            <div class="linea">
-                                                <div class="card text-center" style="width: 9rem;" id="btn_enviar_bano">
-
-                                                    <img class="card-img-top" src="assets/img/bano.png"
-                                                        alt="Card image cap">
-
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Baño</h5>
-                                                        <p class="card-text">Seleccionar</p>
-                                                    </div>
-                                                </div>
-
-
-
-                                                <div class="card text-center" style="width: 9rem;" id="btn_enviar_lab">
-                                                    <img class="card-img-top" src="assets/img/tubo.png"
-                                                        alt="Card image cap">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">Laboratorio</h5>
-                                                        <p class="card-text">Seleccionar</p>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="card text-center" style="width: 9rem;" id="btn_enviar_hab">
-                                                    <img class="card-img-top" src="assets/img/bed.png"
-                                                        alt="Card image cap">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">H - 123</h5>
+                                                        <h5 class="card-title">Ruta Nocturna</h5>
                                                         <p class="card-text">Seleccionar</p>
                                                     </div>
                                                 </div>
@@ -419,6 +432,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
             <!-- Bootstrap core JavaScript-->
@@ -464,10 +478,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
     
             
             <script type="text/javascript">
-                <?php
+               <?php
                 $loading = $_GET['L'];
                 if($loading==1){
-                ?>
+                ?> 
                 
                     document.getElementById("boton").click();
                     
@@ -486,6 +500,111 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             document.getElementById("headerRobot").style.display="block";; 
         }, 3000);
         </script> 
+
+        <script>
+        alertas();
+        function alertas(){
+            
+            var peticionAlertas = new XMLHttpRequest();
+            peticionAlertas.open("get", "Backend/select_alertas.php", true);
+
+            peticionAlertas.send();
+
+            peticionAlertas.onload = function () {
+                //$('#alertasModal').modal('show');
+                // ...esta aparece bajo la forma de "this.responseText", un texto con un formato que recuerda al de JSON.
+                // Como al final de dicho texto se encuentra "[]", no cumple con el convenio del formato JSON.
+                var textoJSON_noApto = this.responseText;
+                //console.log(textoJSON_noApto);
+
+                // Ahora el texto ya es apto para pasarlo a JSON.
+                var json = JSON.parse(textoJSON_noApto);
+                //console.log(json);
+                // Una vez pasado a dicha formato, y por cada objeto en dicho JSON, se accede a sus propiedades.
+                //var x= $('#texto-alertas').val();
+                //console.log(x)
+                var idAlerta = document.getElementById('texto-alertas');
+                
+                idAlerta.innerHTML = json.length;
+
+
+                var alertas_body = document.getElementById('alertas-body');
+                var textoAlertas= "Ha ocurrido un error de tipo '" + json[0]["tipo"] +"'." ;
+
+                alertas_body.innerHTML= textoAlertas;
+
+                
+
+            };
+        }
+        //setInterval('alertas()',3000);
+        </script>
+
+        <script>
+
+            var peticionAlertas = new XMLHttpRequest();
+            peticionAlertas.open("get", "Backend/select_incidencias.php", true);
+
+            peticionAlertas.send();
+
+            peticionAlertas.onload = function () {
+
+                // ...esta aparece bajo la forma de "this.responseText", un texto con un formato que recuerda al de JSON.
+                // Como al final de dicho texto se encuentra "[]", no cumple con el convenio del formato JSON.
+                var textoJSON_noApto = this.responseText;
+                //console.log(textoJSON_noApto);
+
+                // Ahora el texto ya es apto para pasarlo a JSON.
+                var json = JSON.parse(textoJSON_noApto);
+                //console.log(json);
+                // Una vez pasado a dicha formato, y por cada objeto en dicho JSON, se accede a sus propiedades.
+                
+                var idAlerta = document.getElementById('texto-heridos');
+                idAlerta.innerHTML = json.length;
+                
+
+            };
+        </script>
+
+<script>
+    
+        function alertasResuelto(){
+            
+            var peticionAlertas = new XMLHttpRequest();
+            peticionAlertas.open("get", "Backend/select_alerta_resuelto.php", true);
+
+            peticionAlertas.send();
+
+            peticionAlertas.onload = function () {
+                //$('#alertasModal').modal('show');
+                // ...esta aparece bajo la forma de "this.responseText", un texto con un formato que recuerda al de JSON.
+                // Como al final de dicho texto se encuentra "[]", no cumple con el convenio del formato JSON.
+                var textoJSON_noApto = this.responseText;
+                //console.log(textoJSON_noApto);
+
+                // Ahora el texto ya es apto para pasarlo a JSON.
+                var json = JSON.parse(textoJSON_noApto);
+                //console.log(json);
+                // Una vez pasado a dicha formato, y por cada objeto en dicho JSON, se accede a sus propiedades.
+                //var x= $('#texto-alertas').val();
+                //console.log(x)
+                //var idAlerta = document.getElementById('texto-alertas');
+                
+                //idAlerta.innerHTML = json.length;
+
+                $('#alertasModal').modal('show');
+                var alertas_body = document.getElementById('alertas-body');
+                var textoAlertas= "Ha ocurrido un error de tipo '" + json[0]["tipo"] +"'." ;
+
+                alertas_body.innerHTML= textoAlertas;
+
+                
+
+            };
+        }
+        alertasResuelto();
+        setInterval('alertasResuelto()',300000);
+        </script>
 </body>
 
 </html>
