@@ -2,9 +2,5 @@
     "python.autoComplete.extraPaths": [
         "/home/soft/catkin_ws/devel/lib/python2.7/dist-packages",
         "/opt/ros/kinetic/lib/python2.7/dist-packages"
-    ],
-    "python.analysis.extraPaths": [
-        "/home/soft/catkin_ws/devel/lib/python2.7/dist-packages",
-        "/opt/ros/kinetic/lib/python2.7/dist-packages"
     ]
 }
