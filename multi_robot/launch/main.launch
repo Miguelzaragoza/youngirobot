@@ -1,0 +1,13 @@
+<launch>
+    <param name="/use_sim_time" value="true" />
+    <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+
+    <!-- start world -->
+    <node name="gazebo" pkg="gazebo_ros" type="gazebo" args="$(find multi_robot)/world/hospital.world" respawn="false" output="screen" />-->
+
+    <!-- start gui -->
+    <!--<node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" />-->
+
+    <!-- include robots-->
+    <include file="$(find multi_robot)/launch/multi_robot.launch" />
+</launch>
