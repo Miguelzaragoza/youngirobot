@@ -280,9 +280,9 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 11201
+      Max Intensity: 6048
       Min Color: 0; 0; 0
-      Min Intensity: 101
+      Min Intensity: 240
       Name: LaserScan
       Position Transformer: XYZ
       Queue Size: 10
@@ -294,22 +294,6 @@ Visualization Manager:
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
-      Value: true
-    - Alpha: 1
-      Arrow Length: 0.300000012
-      Axes Length: 0.300000012
-      Axes Radius: 0.00999999978
-      Class: rviz/PoseArray
-      Color: 255; 25; 0
-      Enabled: true
-      Head Length: 0.0700000003
-      Head Radius: 0.0299999993
-      Name: PoseArray
-      Shaft Length: 0.230000004
-      Shaft Radius: 0.00999999978
-      Shape: Arrow (Flat)
-      Topic: /particlecloud
-      Unreliable: false
       Value: true
   Enabled: true
   Global Options:
@@ -336,25 +320,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 7.29257679
+      Distance: 24.7596321
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.853978395
-        Y: 1.4946208
-        Z: 0.00340652466
+        X: -3.46275711
+        Y: -2.91186666
+        Z: 4.50754023
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 1.18099403
+      Pitch: 0.785398006
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.09256506
+      Yaw: 0.785398006
     Saved: ~
 Window Geometry:
   Displays:
