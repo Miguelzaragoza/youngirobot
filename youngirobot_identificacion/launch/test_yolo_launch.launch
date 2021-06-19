@@ -1,0 +1,5 @@
+<launch>
+    <!-- My Package launch file -->
+    <node pkg="youngirobot_identificacion" type="predict.py" name="Predict"  output="screen">
+    </node>
+</launch>
